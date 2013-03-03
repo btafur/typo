@@ -70,6 +70,15 @@ class Article < Content
       self.settings = {}
     end
   end
+  def merge_with(other_article_id)
+    new_attributes = self.attributes
+    
+    @other_article = Article.find_by_id(other_article_id)
+    
+    new_attributes["body"] = new_attributes["body"] + @other_article.attributes["body"]
+    self.attributes = new_attributes
+    self.save
+  end
 
   def set_permalink
     return if self.state == 'draft'

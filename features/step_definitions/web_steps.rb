@@ -43,6 +43,10 @@ Given /^the blog is set up$/ do
                 :state => 'active'})
 end
 
+Given /^I fill in "(.*?)" with id of article "([^"]+)"$/ do |field, title|
+  fill_in(field, :with => "#{Article.find_by_title(title).id}")
+end
+
 And /^I am logged into the admin panel$/ do
   visit '/accounts/login'
   fill_in 'user_login', :with => 'admin'

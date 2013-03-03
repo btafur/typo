@@ -1,6 +1,14 @@
 <% className = form_action.delete(:class) %>
-<%= form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data", :class => className) do %>
-
+<%= form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data", :class => className) do %>  
   <%= render :partial => "form" %>
 
+<% end %>
+<% if not Article.find_by_id(params[:id]).nil? %>
+  
+  <h3>Merging articles</h3>
+  <%= form_tag(:action => "merge") do %>
+    <%= hidden_field_tag "idn", params[:id]%>
+    <input name = "merge_with" type ="text" id = "merge_with" ></input>
+    <%= submit_tag 'Merge' %>
+  <% end %>        
 <% end %>

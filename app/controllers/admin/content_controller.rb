@@ -9,6 +9,7 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find_by_id(params[:idn])
     if current_user.admin?
       @article.merge_with(params[:merge_with])
+    end
     #flash[:notice] = @article.attributes
     redirect_to '/'
   end

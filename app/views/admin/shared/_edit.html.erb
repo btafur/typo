@@ -3,7 +3,7 @@
   <%= render :partial => "form" %>
 
 <% end %>
-<% if not Article.find_by_id(params[:id]).nil? %>
+<% if not Article.find_by_id(params[:id]).nil? and current_user.admin?%>
   
   <h3>Merge Articles</h3>
   <%= form_tag(:action => "merge") do %>

@@ -7,7 +7,8 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
   def merge
     @article = Article.find_by_id(params[:idn])
-    @article.merge_with(params[:merge_with])
+    if current_user.admin?
+      @article.merge_with(params[:merge_with])
     #flash[:notice] = @article.attributes
     redirect_to '/'
   end

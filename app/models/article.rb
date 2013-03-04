@@ -73,10 +73,15 @@ class Article < Content
   def merge_with(other_article_id)
     new_attributes = self.attributes    
     @other_article = Article.find_by_id(other_article_id)    
+    @other_article.reload
     new_attributes["body"] = new_attributes["body"] + @other_article.attributes["body"]
     self.attributes = new_attributes
+    @other_article.comments.each do |c|
+      self.comments << c
+    end
     self.save
-    @other_article.destroy
+    @other_article.reload
+    @other_article.destroy    
   end
 
   def set_permalink

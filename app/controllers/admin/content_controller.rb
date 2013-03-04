@@ -10,8 +10,9 @@ class Admin::ContentController < Admin::BaseController
     if current_user.admin?
       @article.merge_with(params[:merge_with])
     end
-    #flash[:notice] = @article.attributes
+    #flash[:notice] = @article.attributes    
     redirect_to '/'
+    
   end
 
   def auto_complete_for_article_keywords

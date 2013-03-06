@@ -1,6 +1,6 @@
 Feature: Merge Articles
   As a blog administrator
-  In order to share my thoughts organize the posts better
+  In order to organize the posts better
   I want to be able to merge articles in my blog
 
   Background:
